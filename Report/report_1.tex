@@ -171,6 +171,22 @@ To compare the predicted probabilities against the actual binary labels, we impl
 \end{equation}
 where $y_i$ is the true label (one-hot encoded, so only one value is 1, and the rest are 0) and $\hat{y}_i$ is the predicted probability for class $i$ (usually from a softmax layer). In addition to the cross-entropy loss function, we implement the Adam optimizer, which adapts the learning rates for each parameter. We've set a conservative learning rate of 0.00001 to prevent overshooting optimal values.
 
+The number of batches per epoch is determined by the size of our training dataset and the batch size defined on DataLoader. Since we are dealing iwth 1,787,748 samples from 1993-2014, and 70-30 split used for training and validation, we have 1,251,424 samples. We also consider the batch size of 128. Based on these parameters, we have 9,777 batches per epoch ($1,251,424 / 128 \approx 9,777$). Meaning, our CNN processes approximately 9,777 batches of financial images in each complete epoch. These batches allows us to provide extensive gradient updates, allowing our model to learn many different patterns presented in the financial time series data.
+
 For the validation process, we disable the gradient computation which significantly reduces memory usage. It also has the added benefit of speeding up the processing time, since we're only measuring performance, not updating weights. The same cross-entropy loss function is used on the validation step as in the training step.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.65\linewidth]{plots/training_validation.png}
+	\caption{Training and Validation Loss}
+	\label{fig:epoch_loss}
+\end{figure}
+
+We execute each epoch's training and validation process and then capture their respective loss values, our primary quantitative performance metric. The loss values directly measure how well our CNN can predict stock movements from visual chart patterns. For each epoch, we record how our financial CNN's prediction accuracy evolves, capturing both training and validation performance. We also create a system to preserve the model states throughout training, allowing us to later select optimal versions of our financial predictors based on performance metrics.
+
+We implement an early stop logic function to determine the optimal loss characteristics. The function identifies and records when our model performs best on validation data. It identifies the best value is identified by stopping the training and validation step when the model's performance stops improving for a specific number of epochs. This prevents wasted computation time and overfitting when the model has reached its performance plateau.
+
+
 
 \end{document}

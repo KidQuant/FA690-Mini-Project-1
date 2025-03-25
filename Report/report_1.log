@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.4.13)  24 MAR 2025 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.4.13)  25 MAR 2025 13:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1081,15 +1081,22 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/drebi/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-[3] [4] [5] [6] [7] (report_1.aux)
+[3] [4] [5] [6]
+<plots/training_validation.png, id=49, 617.9085pt x 379.4175pt>
+File: plots/training_validation.png Graphic file (type png)
+<use plots/training_validation.png>
+Package pdftex.def Info: plots/training_validation.png  used on input line 181.
+
+(pdftex.def)             Requested size: 305.33789pt x 187.48514pt.
+ [7 <./plots/training_validation.png>] [8] (report_1.aux)
 Package rerunfilecheck Info: File `report_1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35173 strings out of 476326
- 815949 string characters out of 5787722
+ 35188 strings out of 476326
+ 816261 string characters out of 5787722
  1859660 words of memory out of 5000000
- 55034 multiletter control sequences out of 15000+600000
+ 55044 multiletter control sequences out of 15000+600000
  521387 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,6n,104p,787b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1103,9 +1110,9 @@ ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/drebi/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/drebi/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/dre
 bi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on report_1.pdf (7 pages, 118590 bytes).
+Output written on report_1.pdf (8 pages, 152684 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 109 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
