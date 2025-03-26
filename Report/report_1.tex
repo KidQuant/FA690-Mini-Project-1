@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
-\title{Mini Report \#1}
-\author{Andre Sealy, Swapnil Pant, Daiki Ishiyama}
+\title{Mini Report \#1: Predicting Stock Price Movements Using Convolutional Neural Networks}
+\author{Andre Sealy, Daiki Ishiyama, Swapnil Pant}
 \usepackage{amsmath, amsfonts, amssymb, amsthm,}
 \usepackage{tikz}
 \usetikzlibrary{matrix,positioning}
@@ -175,7 +175,6 @@ The number of batches per epoch is determined by the size of our training datase
 
 For the validation process, we disable the gradient computation which significantly reduces memory usage. It also has the added benefit of speeding up the processing time, since we're only measuring performance, not updating weights. The same cross-entropy loss function is used on the validation step as in the training step.
 
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.65\linewidth]{plots/training_validation.png}
@@ -187,6 +186,62 @@ We execute each epoch's training and validation process and then capture their r
 
 We implement an early stop logic function to determine the optimal loss characteristics. The function identifies and records when our model performs best on validation data. It identifies the best value is identified by stopping the training and validation step when the model's performance stops improving for a specific number of epochs. This prevents wasted computation time and overfitting when the model has reached its performance plateau.
 
+Figure (\ref{fig:epoch_loss}) shows us the training and validation curves based on the epoch. Our training and validation process allowed for a maximum of 100 epochs; however, the CNN stopped after just eight epochs, suggesting that our model runs computationally efficiently with the given parameters. We look at the gap between the training and validation curve when assessing how the model can be generalized. As we can see, the gap between the training and validation curves suggests that the model does not overfit, which means that we can generalize on unseen data.
 
+For strategic functions, we save the baseline epoch on file. This allows us to resume training from this exact point if needed, as well as provide a benchmark model for evaluation on the test data. Figure (\ref{fig:epoch_loss}) also shows us that the epoch that provides us with the best performance is epoch 3, with a training loss of 0.68597 and a validation loss of 0.611354. We have used epoch 3 as a benchmark for testing and evaluation of the CNN as well.
+
+\section*{Results}
+
+
+The testing set includes the date ranges from 2015-2019, with a size of approximately 273,307 samples. Like the training and validation set, the format involves 64x60 grayscale images representing stock price patterns. Like the training and testing set, we convert continuous 5-day returns into binary classification targets (1 for positive returns, 0 for negative returns). 
+
+We process 2,048 samples simultaneously for batch processing, significantly larger than the training batch size of 128. This is possible because the testing process does not require storing gradients, which allows greater computational efficiency. Larger batches provide faster evaluation across the complete testing set of 273,307. Since we are using a time-series split, we disable any shuffling mechanism to preserve the chronological integrity of the dataset.
+
+The question remains: Can visual patterns in historical price charts predict whether a stock will rise or fall over the next 5 days?
+
+\subsection*{Evaluation}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.85\linewidth]{plots/confusion_matrix.png}
+	\caption{Confusion Matrix for the binary classification of returns}
+	\label{fig:confusion_matrix}
+\end{figure}
+
+Same as the training and validation step, we use the Cross-Entropy loss function for our elevation metric. The evaluation process produces three critical outputs: the test loss, the ground truth (actual market movement), and the predicted market movements. We also have the prediction probability, which we acquire through the use of the softmax function that converts raw logits into probability distributions. With any classification function, we are only interested in the True label (index 1). The extracted probabilities represent the likelihood that each stock will experience positive returns over the next 5 days. We use the default decision threshold of 0.5.
+
+\begin{table}[ht]
+	\centering
+	\caption{Metrics for the binary classification stock prediction}
+	\begin{tabular}[t]{ccccc}
+		\toprule
+		Model & Accuracy & Precision & Recall & F1 Score \\
+		\midrule
+		CNN Classification & 68.95\% & 53\% & 71\% & 60\%  \\			
+		\bottomrule
+	\end{tabular}\label{tab:metrics}
+\end{table}
+
+Figure (\ref{fig:confusion_matrix}) shows the Confusion Matrix for the binary classification of 5d stock returns, an important visualization evaluation metric for classification models. We have stock directions predicted correctly, 143,508, with 99,296 positive correct predictions and 44,212 correct negative predictions. Along with the true positives and negatives, we have 129,799 misclassifications. From these indicators, we can predict the accuracy, which is the percentage of all predictions correctly classified, denoted by
+\begin{equation}
+	\text{Accuracy}=\frac{TP+TN}{(TP+TN+FP+FN)}.
+\end{equation}
+We also have the precision, denoted by,
+\begin{equation}
+	\text{Precision}=\frac{TP}{(TP+FP)};
+\end{equation}
+the recall, denoted by,
+\begin{equation}
+	\text{Recall}=\frac{TP}{(TP+FN)};
+\end{equation}
+and the F1 score, denoted by;
+\begin{equation}
+	\text{F1 Score}=\frac{2\times (\text{Precision}\times\text{Recall})}{(\text{Precision}+\text{Recall})}.
+\end{equation}
+Table (\ref{tab:metrics}) shows the metrics for our binary classification model using stock predictions. The overall effectiveness of our CNN can be measured by the accuracy, which we find to be 68.95\%. This means that our CNN is significantly better than a random guess and more than two out of every three trades will be predicted accuracy using this model. On the other hand, we must consider the precision metric, which measures the reliability of our directional signals (higher precision implies fewer false alarms when trading). We find that our precision is 53\%.
+
+Recall indicates how many actual upward movement our model has captured. We find that 71\% of the time, our model was able to capture an upward trend in the stock price, which suggest fewer missed breakout and buying opportunities. Finally, we report the F1 Score, the harmonic average of both the precision and recall metrics, which provides a balance between costly trades (false positives) and missed opportunities (false negatives). We report an F1 score of 60\%.
+
+\section*{Improvements and Future Directions}
 
 \end{document}
