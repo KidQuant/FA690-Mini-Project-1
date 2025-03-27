@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.4.13)  26 MAR 2025 15:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.4.13)  27 MAR 2025 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1086,32 +1086,44 @@ File: plots/images.png Graphic file (type png)
 <use plots/images.png>
 Package pdftex.def Info: plots/images.png  used on input line 87.
 (pdftex.def)             Requested size: 469.75502pt x 91.25877pt.
- [2 <./plots/images.png>] [3] [4] [5] [6] [7]
-<plots/training_validation.png, id=66, 617.9085pt x 379.4175pt>
+ [2 <./plots/images.png>] [3] [4] [5]
+<plots/CNN.png, id=48, 816.04875pt x 158.84344pt>
+File: plots/CNN.png Graphic file (type png)
+<use plots/CNN.png>
+Package pdftex.def Info: plots/CNN.png  used on input line 162.
+(pdftex.def)             Requested size: 493.2442pt x 96.00967pt.
+
+Overfull \hbox (23.48918pt too wide) in paragraph at lines 162--163
+ [][] 
+ []
+
+[6 <./plots/CNN.png>] [7]
+<plots/training_validation.png, id=69, 617.9085pt x 379.4175pt>
 File: plots/training_validation.png Graphic file (type png)
 <use plots/training_validation.png>
-Package pdftex.def Info: plots/training_validation.png  used on input line 199.
+Package pdftex.def Info: plots/training_validation.png  used on input line 204.
 
 (pdftex.def)             Requested size: 305.33789pt x 187.48514pt.
- [8 <./plots/training_validation.png>]
-<plots/confusion_matrix.png, id=75, 579.6054pt x 450.9648pt>
-File: plots/confusion_matrix.png Graphic file (type png)
-<use plots/confusion_matrix.png>
-Package pdftex.def Info: plots/confusion_matrix.png  used on input line 225.
-(pdftex.def)             Requested size: 399.29463pt x 310.67747pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10 <./plots/confusion_matrix.png>] [11] [12] (report_1.aux)
+[8] [9 <./plots/training_validation.png>]
+<plots/confusion_matrix.png, id=84, 579.6054pt x 450.9648pt>
+File: plots/confusion_matrix.png Graphic file (type png)
+<use plots/confusion_matrix.png>
+Package pdftex.def Info: plots/confusion_matrix.png  used on input line 230.
+(pdftex.def)             Requested size: 399.29463pt x 310.67747pt.
+ [10 <./plots/confusion_matrix.png>]
+[11] [12] (report_1.aux)
 Package rerunfilecheck Info: File `report_1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35226 strings out of 476326
- 816882 string characters out of 5787722
+ 35235 strings out of 476326
+ 817015 string characters out of 5787722
  1859660 words of memory out of 5000000
- 55063 multiletter control sequences out of 15000+600000
+ 55070 multiletter control sequences out of 15000+600000
  521387 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,8n,104p,787b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1127,9 +1139,9 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/dr
 ebi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/U
 sers/drebi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb>
-Output written on report_1.pdf (12 pages, 213164 bytes).
+Output written on report_1.pdf (12 pages, 226904 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 161 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
