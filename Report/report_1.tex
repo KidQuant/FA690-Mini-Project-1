@@ -78,9 +78,22 @@ With the rise of machine learning, there is an opportunity to learn price trends
 
 For the project, we use a comprehensive dataset that employs image classification techniques to predict stock price movements, using both structured and unstructured data, totaling 54 files organized by year. The two types of files are organized by image files (.dat) and label files, which cover 27 years from 1993 to 2019. The dataset is nearly 8 GB large, with 2,061,055 individual stock samples.
 
-The image files (.dat) are binary files containing grayscale images of size 64x60 pixels. Each image represents a visual representation of a stock's price movement and volume history. The images are created using a 20-day rolling window of the market data. The image files in our project will represent the features of our supervised learning algorithm.
+\subsection*{Images}
 
-The labels files (.feather) represent the target variable in our dataset. Each sample contains 8 columns:
+The image files (.dat) are binary files containing 8-bit unsigned integers in grayscale format. They all have dimensions of 64x60 pixels for 20-day windows. Different dimensions exist for 5-day and 60-day windows, but they are not utilized for this project. Each image represents a visual representation of a stock's price movement and volume history. The image files in our project will represent the features of our supervised learning algorithm.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{plots/images.png}
+	\caption{Generated OHLC Sample Images with Volume Bar and Moving Average Line}
+	\label{fig:image}
+\end{figure}
+
+Figure (\ref{fig:image}) shows a sample of the images in our data set. Each bar on the bottom (trading volume) corresponds to the Open-High-Low-Close (OHLC) candles for a given trading day. We also see a smooth curve across the plot, which we identify as the moving average for the 20-day window.
+
+\section*{Labels}
+
+The labels files (.feather) represent the target variable in our dataset. Each image corresponds to a row in the matching labels file containing the following features:
 
 \begin{itemize}
 	\item Date: Last day of 20-day rolling window,
@@ -152,6 +165,12 @@ The final layer is a fully connected layer, which acts as a bridge from the conv
 
 In this layer, we have a dropout parameter, which implements a dropout rate of 50\%. This prevents the network from over-relying on any specific feature extracted by the convolutional layer. We also use a linear projection, which directly maps the high-dimensional feature space to a binary classification. Since we have not implemented a hidden, fully connected layer, the network relies entirely on the convolutional feature hierarchy. This structure allows the convolutional layers to do the heavy lifting of feature extraction and applies a strong regularization framework at the classification stage to prevent overfitting.
 
+For the final layer, we apply the Softmax function for the neural network, which transforms the network's raw outputs into probabilities using the following formula:
+
+\begin{equation}
+	\text{Softmax}(x_i)=\frac{e^{x_i}}{\sum_{i=1}^K e^{x_i}},
+\end{equation}
+where $x_i$ is the raw output (logit) for class $i$ and $K$ is the number of classes (two in relation to the objective of returns). The Softmax allows us to convert raw neural networks into probabilities between 0 and 1. It also works well with cross-entropy loss functions, providing smooth gradients for backpropagation methods and handling class imbalances in our financial data.
 
 \subsection*{Training and Validation}
 
@@ -204,7 +223,7 @@ The question remains: Can visual patterns in historical price charts predict whe
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.85\linewidth]{plots/confusion_matrix.png}
-	\caption{Confusion Matrix for the binary classification of returns}
+	\caption{Confusion Matrix for the Binary Classification of Returns}
 	\label{fig:confusion_matrix}
 \end{figure}
 
@@ -244,4 +263,12 @@ Recall indicates how many actual upward movement our model has captured. We find
 
 \section*{Improvements and Future Directions}
 
+A CNN can successfully predict stock using images from stock market prices. The predictive patterns in the pictures and labeled data provide a highly robust framework. On the other hand, this framework is not without its drawbacks. We still find issues with maintaining a higher true positive rate (53\%). However, in an industry where asset prices are random, achieving a high true positive rate may not be as important. We still come away with the following questions:
+
+\begin{itemize}
+	\item Are there specific chart patterns the model struggles with?
+	\item Does performance vary by market capitalization or sector?
+	\item Is performance consistent across different market conditions.
+\end{itemize}
+For future considerations, we can lower the threshold to increase recall during uptrends when false positives are less punishing. We can also implement regime detection algorithms to automatically adjust thresholds based on current market conditions.
 \end{document}
