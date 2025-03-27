@@ -1,0 +1,27 @@
+Model 1 
+This is the benchmark model, bases for comparison for the following models.
+
+
+The classes names are changed as Neta , Netb, Netc and Netd respectively.
+ 
+Model 2 
+Increased kernel size to (7,5)
+
+
+Model 3 
+Decreased kernel size to (3,3)
+
+
+Model 4 
+Increased negative slope of Leaky ReLU of layers 2, 3 to 0.05
+
+
+Model 5
+Decreased negative slope of Leaky ReLU of layers 2, 3 to 0.005
+
+
+Changing the seed from 42 to 100
+
+
+To do - 
+- Run and get results for all the models above and compare the F1score for each of them to the benchmark model 
